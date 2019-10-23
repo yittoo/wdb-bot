@@ -111,7 +111,7 @@ Q3) Can I ask a coding question?
 A3) Of course, please use <#445233618466373661> for your code related questions and provide as much as details as possible, if you are sharing code wrap it with triple backticks.
 
 Q4) What are good sources to learn x?
-A4) Please try "!freecourses" and "!paidcourses"
+A4) Please try "!suggestfree" and "!suggestcheap"
 
 Q5) I'm too confused, I don't know what to learn next.
 A5) This is perfectly normal, web development is a gigantic field. Please refer to this <https://github.com/kamranahmedse/developer-roadmap>. This roadmap might scare you at first, but remember. You do not need to know everything, just things you need for your goals.
@@ -122,6 +122,56 @@ A5) This is perfectly normal, web development is a gigantic field. Please refer 
 Q6) 
 `)
 			msg.Reply(s, m)
+
+		case "!suggestcheap":
+			if len(msgIntoArr) < 2 {
+				m := `Please provide one of the following topics for me to suggest courses about
+- Example: 
+	"!suggestcheap react"
+
+Possible options: react, css, node, typescript, reactnative, webdesign, php, go
+`
+				msg.Reply(s, m)
+				return
+			}
+			switch strings.ToLower(msgIntoArr[1]) {
+			case "react":
+				m := `Cheap ReactJS Courses:
+React - The Complete Guide (incl Hooks, React Router, Redux) - <https://www.udemy.com/share/101WayB0IfcVxXRn4=/>
+(Advanced) React Testing with Jest and Enzyme - <https://www.udemy.com/share/101ZdQB0IfcVxXRn4=/>`
+				msg.Reply(s, m)
+
+			case "css":
+				m := `Cheap CSS Courses:
+Advanced CSS and Sass: Flexbox, Grid, Animations and More! - <https://www.udemy.com/share/101WmqB0IfcVxXRn4=/>`
+				msg.Reply(s, m)
+
+			case "node":
+				m := `Cheap NodeJS Courses:
+Code with Node: Learn by Doing - <https://www.udemy.com/course/draft/2215346/>`
+				msg.Reply(s, m)
+			case "typescript":
+				m := `Cheap TypeScript Courses:
+Typescript: The Complete Developer's Guide - <https://www.udemy.com/share/101X9oB0IfcVxXRn4=/>`
+				msg.Reply(s, m)
+			case "reactnative":
+				m := `Cheap React Native Courses:
+React Native - The Practical Guide: <https://www.udemy.com/share/101WwKB0IfcVxXRn4=/>`
+				msg.Reply(s, m)
+			case "webdesign":
+				m := `Cheap Web Design Courses:
+Adobe Photoshop CC - Web Design, Responsive Design & UI - <https://www.udemy.com/share/101W4aB0IfcVxXRn4=/>`
+				msg.Reply(s, m)
+			case "php":
+				m := `Cheap PHP Courses:
+PHP for Beginners - Become a PHP Master - CMS Project - <https://www.udemy.com/share/101X5QB0IfcVxXRn4=/>`
+				msg.Reply(s, m)
+			case "go":
+				m := `Cheap Go (Golang) Courses:
+Learn How To Code: Google's Go (golang) Programming Language - <https://www.udemy.com/share/101r9AB0IfcVxXRn4=/>
+(Requires basic Go knowledge) Web Development w/ Google’s Go (golang) Programming Language - <https://www.udemy.com/share/1022eCB0IfcVxXRn4=/>`
+				msg.Reply(s, m)
+			}
 
 		case "!debug":
 			fmt.Println(evt.Message.Content)
