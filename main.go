@@ -57,6 +57,7 @@ func startDc() {
 
 	discord.Ready(func() {
 		fmt.Println("Bot running")
+		fmt.Println(disgord.LibraryInfo())
 	})
 }
 
@@ -65,7 +66,7 @@ func dcOnMessage(dc *disgord.Client) {
 		msg := evt.Message
 		msgIntoArr := strings.Fields(msg.Content)
 		aut := evt.Message.Author
-		autTag := aut.Tag()
+		autTag := aut.Username
 		cur, err := s.GetCurrentUser()
 		if err != nil {
 			fmt.Println(err)
@@ -79,7 +80,7 @@ func dcOnMessage(dc *disgord.Client) {
 		}
 
 		if strings.Contains(msgIntoArr[0], cur.ID.String()) {
-			r := fmt.Sprintf("<@%v> ne var amına kodumun tagliyosun", aut.ID)
+			r := fmt.Sprintf("<@%v> why are you taggin me?", aut.ID)
 			msg.Reply(s, r)
 			return
 		}
@@ -93,7 +94,7 @@ func dcOnMessage(dc *disgord.Client) {
 '!faq' - Frequently asked questions
 '!tobase64 message' - Encodes message to base64
 '!frombase64 message' - Decodes message from base64
-'ping' - Pong.`)
+'!ping' - Pong.`)
 			msg.Reply(s, h)
 
 		case "!faq":
@@ -213,10 +214,11 @@ Learn How To Code: Google's Go (golang) Programming Language - <https://www.udem
 			n := strings.Join(msgIntoArr[1:], " ")
 			act.Name = n
 
-			upd := disgord.UpdateStatusPayload{
+			upd := disgord.UpdateStatusCommand{
 				Game: act,
 			}
-			err := s.UpdateStatus(&upd)
+
+			err = s.UpdateStatus(&upd)
 			if err != nil {
 				fmt.Println(err)
 			}
