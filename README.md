@@ -11,9 +11,13 @@ Installation:
 {
   "ClientID": BOT_CLIENT_ID,
   "Secret": BOT_SECRET,
-  "Permissions": 8, 
+  "Permissions": 8,
   "Token": BOT_TOKEN
 }
 ```
 
 - Inside the folder, `go run main.go` or `go build` then run the compiled executible
+
+Thanks for contributions:
+
+- [J-Grizz](https://github.com/J-Grizz)
