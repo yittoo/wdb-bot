@@ -124,22 +124,56 @@ Q6)
 `)
 			msg.Reply(s, m)
 
+		case "!suggestfree":
+			if len(msgIntoArr) < 2 {
+				m := `Please provide one of the following topics for me to suggest courses about
+- Example: 
+	"!suggestfree react"
+
+Possible options: css, node, javascript`
+				msg.Reply(s, m)
+				return
+			}
+			switch strings.ToLower(msgIntoArr[1]) {
+
+			case "css":
+				m := `Free CSS Courses: 
+freeCodeCamps Responsive Web Design Certification <https://www.freecodecamp.org/learn>
+LET'S GET GRIDDY WITH IT (CSS GRID with Wes Bos) <https://cssgrid.io/>
+WHAT THE FLEXBOX?! (Flexbox with Wes Bos) - <https://flexbox.io/>`
+				msg.Reply(s, m)
+
+			case "node":
+				m := `Free NodeJS Courses:
+Code with Node: Learn by Doing - <https://www.devsprout.io/code-with-node>`
+				msg.Reply(s, m)
+
+			case "javascript":
+				m := `Free JavaScript Courses:
+freeCodeCamps Algorithms and Data Structures Certification <https://www.freecodecamp.org/learn>
+JavaScript30 (ES6 and DOM manipulation with Wes Bos) <https://javascript30.com/>`
+				msg.Reply(s, m)
+			}
+
 		case "!suggestcheap":
 			if len(msgIntoArr) < 2 {
 				m := `Please provide one of the following topics for me to suggest courses about
 - Example: 
 	"!suggestcheap react"
 
-Possible options: react, css, node, typescript, reactnative, webdesign, php, go
+Possible options: react, css, javascript, typescript, reactnative, webdesign, php, go
 `
+				// I moved the node option to !suggestfree as Ian has made it free on devsprout.io
 				msg.Reply(s, m)
 				return
 			}
 			switch strings.ToLower(msgIntoArr[1]) {
 			case "react":
 				m := `Cheap ReactJS Courses:
+The Modern React Bootcamp (Hooks, Context, NextJS, Router) - <https://www.udemy.com/course/modern-react-bootcamp/> 
 React - The Complete Guide (incl Hooks, React Router, Redux) - <https://www.udemy.com/share/101WayB0IfcVxXRn4=/>
 (Advanced) React Testing with Jest and Enzyme - <https://www.udemy.com/share/101ZdQB0IfcVxXRn4=/>`
+				// I figured Colts course should be the top most option.
 				msg.Reply(s, m)
 
 			case "css":
@@ -147,9 +181,10 @@ React - The Complete Guide (incl Hooks, React Router, Redux) - <https://www.udem
 Advanced CSS and Sass: Flexbox, Grid, Animations and More! - <https://www.udemy.com/share/101WmqB0IfcVxXRn4=/>`
 				msg.Reply(s, m)
 
-			case "node":
-				m := `Cheap NodeJS Courses:
-Code with Node: Learn by Doing - <https://www.udemy.com/course/draft/2215346/>`
+			case "javascript":
+				m := `Cheap JavaScript Courses:
+JavaScript: Understanding the Weird Parts - <https://www.udemy.com/course/understand-javascript/>
+The Complete JavaScript Course 2019: Build Real Projects! - <https://www.udemy.com/course/the-complete-javascript-course/>`
 				msg.Reply(s, m)
 			case "typescript":
 				m := `Cheap TypeScript Courses:
