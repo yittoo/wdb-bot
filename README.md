@@ -1,9 +1,9 @@
-Requirements:
+#### Requirements:
 
 - Go 1.13^
 - Discord Bot credentials obtained from Discord Application Developer API
 
-Installation:
+#### Installation:
 
 - Create config.json file inside with following content these all are obtained through Discord.
 
@@ -18,6 +18,6 @@ Installation:
 
 - Inside the folder, `go run main.go` or `go build` then run the compiled executible
 
-Thanks for contributions:
+#### Thanks for contributions:
 
 - [J-Grizz](https://github.com/J-Grizz)
