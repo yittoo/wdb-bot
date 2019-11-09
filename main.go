@@ -80,7 +80,7 @@ func dcOnMessage(dc *disgord.Client) {
 		}
 
 		if strings.Contains(msgIntoArr[0], cur.ID.String()) {
-			r := fmt.Sprintf("<@%v> why are you taggin me?", aut.ID)
+			r := fmt.Sprintf("Need help <@%v>? Please type !help or !faq", aut.ID)
 			msg.Reply(s, r)
 			return
 		}
@@ -92,6 +92,10 @@ func dcOnMessage(dc *disgord.Client) {
 				`Publicly available commands are as follows:
 
 '!faq' - Frequently asked questions
+'!suggestfree' - Suggest free courses about given subject
+'!suggestcheap' - Suggest cheap courses about given subject
+'!suggestarticle' - Suggest articles related to given subject
+'!about' - Information about bot
 '!tobase64 message' - Encodes message to base64
 '!frombase64 message' - Decodes message from base64
 '!ping' - Pong.`)
@@ -105,25 +109,56 @@ func dcOnMessage(dc *disgord.Client) {
 Q1) How long does this course take to finish?
 A1) This really depends on each person. Some may complete in 2 weeks, some may complete in 2 months, it's up to each person. But in order to get traction in programming a person should spend at least 10 hours a week coding.
 
-Q2) Will I be able to land a job after this course? Is there people who got hired after this course?
+Q2) Will I be able to land a job after this course? Are there people who got hired after this course?
 A2) This course alone will not be sufficient to get a job without connections. A developer has to grow portfolio of personal projects in modern tech world to prove he/she is capable. There are many of us that got hired after completing course but most of this time learning additional stuff was necessary. For more questions please refer to <#445233695633440778>
 
 Q3) Can I ask a coding question?
 A3) Of course, please use <#445233618466373661> for your code related questions and provide as much as details as possible, if you are sharing code wrap it with triple backticks.
 
 Q4) What are good sources to learn x?
-A4) Please try "!suggestfree" and "!suggestcheap"
+A4) Please try "!suggestfree" and "!suggestcheap", also you can take a look at "!suggestarticle"
 
 Q5) I'm too confused, I don't know what to learn next.
 A5) This is perfectly normal, web development is a gigantic field. Please refer to this <https://github.com/kamranahmedse/developer-roadmap>. This roadmap might scare you at first, but remember. You do not need to know everything, just things you need for your goals.
 `)
 			msg.Reply(s, m)
-			m = fmt.Sprintf(
-				`
-Q6) 
-`)
+		// 			m = fmt.Sprintf(
+		// 				`
+		// Q6)
+		// `)
+		// 			msg.Reply(s, m)
+		case "!about":
+			m := fmt.Sprintf(`
+WDB Bot - Built and maintained by Yit
+It's fully open source, written in Go and contributions either with pull request of pm suggestions are welcome
+Github repo: <https://github.com/yittoo/wdb-bot>
+
+**How to contribute?**
+Please fork the project and make a pull request with changes you made, after making the request you can pm me (Yit) on discord to notify me about it :)`)
 			msg.Reply(s, m)
 
+		case "!suggestarticle":
+			if len(msgIntoArr) < 2 {
+				m := `Please provide one of the following topics for me to suggest courses about
+- Example: 
+	"!suggestarticle javascript"
+
+Possible options: websocket, javascript`
+				msg.Reply(s, m)
+				return
+			}
+			switch strings.ToLower(msgIntoArr[1]) {
+			case "websocket":
+				m := `
+WebSocket Related Articles:
+Scaling WebSocket Connections using Web Workers - <https://ayushgp.github.io/scaling-websockets-using-sharedworkers/>`
+				msg.Reply(s, m)
+			case "javascript":
+				m := `
+Javascript Related Articles:
+Emojis in javascript (warning difficult to understand read - contains alot of regex) - <https://medium.com/reactnative/emojis-in-javascript-f693d0eb79fb/>`
+				msg.Reply(s, m)
+			}
 		case "!suggestfree":
 			if len(msgIntoArr) < 2 {
 				m := `Please provide one of the following topics for me to suggest courses about
@@ -138,8 +173,8 @@ Possible options: css, node, javascript`
 
 			case "css":
 				m := `Free CSS Courses: 
-freeCodeCamps Responsive Web Design Certification <https://www.freecodecamp.org/learn>
-LET'S GET GRIDDY WITH IT (CSS GRID with Wes Bos) <https://cssgrid.io/>
+freeCodeCamps Responsive Web Design Certification - <https://www.freecodecamp.org/learn>
+LET'S GET GRIDDY WITH IT (CSS GRID with Wes Bos) - <https://cssgrid.io/>
 WHAT THE FLEXBOX?! (Flexbox with Wes Bos) - <https://flexbox.io/>`
 				msg.Reply(s, m)
 
@@ -163,7 +198,6 @@ JavaScript30 (ES6 and DOM manipulation with Wes Bos) <https://javascript30.com/>
 
 Possible options: react, css, javascript, typescript, reactnative, webdesign, php, go
 `
-				// I moved the node option to !suggestfree as Ian has made it free on devsprout.io
 				msg.Reply(s, m)
 				return
 			}
@@ -173,7 +207,6 @@ Possible options: react, css, javascript, typescript, reactnative, webdesign, ph
 The Modern React Bootcamp (Hooks, Context, NextJS, Router) - <https://www.udemy.com/course/modern-react-bootcamp/> 
 React - The Complete Guide (incl Hooks, React Router, Redux) - <https://www.udemy.com/share/101WayB0IfcVxXRn4=/>
 (Advanced) React Testing with Jest and Enzyme - <https://www.udemy.com/share/101ZdQB0IfcVxXRn4=/>`
-				// I figured Colts course should be the top most option.
 				msg.Reply(s, m)
 
 			case "css":
